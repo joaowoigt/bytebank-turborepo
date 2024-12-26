@@ -1,6 +1,7 @@
 import { HamburguerMenu, LogoIcon } from "@repo/ui/icons";
 import { Text } from "@repo/ui/texts";
 import { Button } from "@repo/ui/buttons";
+import Link from "next/link";
 
 export function HomeHeader() {
   return (

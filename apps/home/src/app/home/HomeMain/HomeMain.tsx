@@ -1,6 +1,7 @@
 import { Text } from "@repo/ui/texts";
 import AdvantageItem from "./AdvangetageItem";
 import { Button } from "@repo/ui/buttons";
+import Link from "next/link";
 
 export default function HomeMain() {
   return (

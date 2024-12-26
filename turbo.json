@@ -13,7 +13,7 @@
       "persistent": true
     },
     "clean": {
-      "cache": false
+      "cache": true
     }
   }
 }

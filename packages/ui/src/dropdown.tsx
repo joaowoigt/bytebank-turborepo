@@ -106,6 +106,7 @@ export function Dropdown(props: Props) {
         >
           {menuDropDownItems.map((item) => (
             <a
+              key={item.title}
               className="hover:ui-bg-secondaryVariant  hover:ui-font-semibold hover:ui-cursor-pointer ui-text-black ui-w-[355px] ui-text-center ui-py-small mobile:ui-w-[270px]"
               onClick={() => {
                 onItemSelected(item);
