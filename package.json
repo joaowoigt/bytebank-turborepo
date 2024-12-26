@@ -16,7 +16,7 @@
   "engines": {
     "node": ">=18"
   },
-  "name": "with-tailwind",
+  "name": "bytebank-turbo",
   "packageManager": "npm@10.5.2",
   "workspaces": [
     "apps/*",
