@@ -2,6 +2,7 @@
 import { Text } from "@repo/ui/texts";
 import { Button } from "@repo/ui/buttons";
 import { Dropdown, TransactionType } from "@repo/ui/dropdown";
+import { LogoIcon } from "@repo/ui/icons";
 
 export default function Page(): JSX.Element {
   return (
@@ -59,6 +60,8 @@ export default function Page(): JSX.Element {
       <Dropdown
         onSelect={(item: TransactionType) => console.log(item)}
       ></Dropdown>
+
+      <LogoIcon></LogoIcon>
     </main>
   );
 }

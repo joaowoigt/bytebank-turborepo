@@ -12,7 +12,8 @@
     "./card": "./src/card.tsx",
     "./texts": "./src/texts.tsx",
     "./buttons": "./src/buttons.tsx",
-    "./dropdown": "./src/dropdown.tsx"
+    "./dropdown": "./src/dropdown.tsx",
+    "./icons": "./src/icons.tsx"
   },
   "license": "MIT",
   "scripts": {
