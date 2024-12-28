@@ -10,6 +10,18 @@
       "types": "./src/add.ts",
       "default": "./dist/add.js"
     },
+    "./add-transaction": {
+      "types": "./src/add-transaction.ts",
+      "default": "./dist/add-transaction.js"
+    },
+    "./balance": {
+      "types": "./src/balance.ts",
+      "default": "./dist/balance.js"
+    },
+    "./extract": {
+      "types": "./src/extract.ts",
+      "default": "./dist/extract.js"
+    },
     "./subtract": {
       "types": "./src/subtract.ts",
       "default": "./dist/subtract.js"
