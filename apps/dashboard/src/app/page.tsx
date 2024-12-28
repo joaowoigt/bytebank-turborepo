@@ -3,6 +3,7 @@ import { Text } from "@repo/ui/texts";
 import { Button } from "@repo/ui/buttons";
 import { Dropdown, TransactionType } from "@repo/ui/dropdown";
 import { LogoIcon } from "@repo/ui/icons";
+import { add } from "@repo/network/add";
 
 export default function Page(): JSX.Element {
   return (

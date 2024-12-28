@@ -10,6 +10,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@repo/network": "*",
     "@repo/ui": "*",
     "next": "15.1.2",
     "react": "^18.2.0",
