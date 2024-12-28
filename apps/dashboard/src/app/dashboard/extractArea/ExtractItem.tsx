@@ -1,5 +1,6 @@
+"use client";
 import { Text } from "@repo/ui/texts";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function ExtractItem({
   _id = "",
@@ -11,15 +12,13 @@ export default function ExtractItem({
   const router = useRouter();
 
   const handleOnClick = () => {
-    router.push({
-      pathname: "/transactionDetails",
-      query: { id: _id },
-    });
+    router.push(`/transactionDetails/id=${_id}`);
   };
   return (
     <div
       className="flex flex-col mt-big hover:cursor-pointer outline outline-1 outline-primary rounded-md p-big mobile:w-[300px]"
       onClick={handleOnClick}
+      key={_id}
     >
       <Text
         intent="ExtraSmall"

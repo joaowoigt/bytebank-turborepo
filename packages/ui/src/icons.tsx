@@ -39,9 +39,9 @@ export function DeleteIcon({ onClick }: IconProps) {
       >
         <path
           stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="1.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="1.6"
           d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"
         />
       </svg>
@@ -59,9 +59,9 @@ export function CloseIcon({ onClick }: IconProps) {
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
         className="feather feather-x"
       >
         <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -254,8 +254,8 @@ export function WhatsappIcon() {
         fill="white"
       />
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M20.345 16.65C19.745 16.29 18.965 15.89 18.255 16.18C17.715 16.4 17.365 17.25 17.015 17.69C16.835 17.91 16.615 17.95 16.345 17.84C14.305 17.03 12.745 15.66 11.615 13.79C11.425 13.5 11.455 13.27 11.685 13C12.025 12.6 12.455 12.14 12.545 11.6C12.635 11.06 12.385 10.43 12.165 9.95001C11.875 9.34001 11.565 8.46001 10.945 8.11001C10.375 7.79001 9.63503 7.97001 9.13503 8.38001C8.26503 9.09001 7.84503 10.2 7.85503 11.3C7.85503 11.61 7.89503 11.92 7.96503 12.23C8.14503 12.96 8.47503 13.63 8.85503 14.28C9.13503 14.77 9.44503 15.24 9.78503 15.69C10.875 17.17 12.235 18.46 13.805 19.42C14.595 19.9 15.435 20.32 16.315 20.61C17.295 20.93 18.175 21.27 19.235 21.07C20.345 20.86 21.445 20.17 21.885 19.1C22.015 18.78 22.085 18.43 22.005 18.1C21.855 17.41 20.915 17 20.355 16.66L20.345 16.65Z"
         fill="white"
       />
@@ -332,9 +332,9 @@ export function ProfileIcon() {
     >
       <path
         stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="1"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1"
         d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 0a8.949 8.949 0 0 0 4.951-1.488A3.987 3.987 0 0 0 13 16h-2a3.987 3.987 0 0 0-3.951 3.512A8.948 8.948 0 0 0 12 21Zm3-11a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
       />
     </svg>

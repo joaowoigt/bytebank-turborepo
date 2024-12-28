@@ -5,17 +5,15 @@ export type BalanceData = {
   value: string;
 };
 
-export default async function (
-  req: NextApiRequest,
-  res: NextApiResponse<BalanceData>
-) {
+export async function getBalance() {
   const balance = await getAllBalance();
+  console.log("Teteste dentro da call" + balance);
   const formatter = new Intl.NumberFormat("pt-BR", {
     style: "currency",
     currency: "BRL",
   });
   const finalText = formatter.format(balance);
-  res.status(200).json({ value: `${finalText}` });
+  return { value: `${finalText}` };
 }
 
 async function getAllBalance() {

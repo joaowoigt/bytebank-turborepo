@@ -8,7 +8,7 @@ export default function ExtractList() {
   useEffect(() => {
     async function getExtract() {
       try {
-        const res = await fetch("/api/extract");
+        const res = await fetch("http://localhost:5000/extract");
         if (!res.ok) {
           throw new Error("Erro ao buscar o extrato");
         }
@@ -26,6 +26,7 @@ export default function ExtractList() {
     <div>
       {extractList.map((item) => (
         <ExtractItem
+          key={item.id}
           _id={item.id}
           month={item.month}
           type={item.type}

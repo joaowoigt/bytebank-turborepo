@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
-const DATABASE_URI: string = process.env.MONGODB_URI || "";
+const DATABASE_URI: string =
+  "mongodb+srv://joaowoigt:jFTEmT0xxYN2ldTB@bytebank.vc3x2.mongodb.net/?retryWrites=true&w=majority&appName=bytebank";
 
 const connectMongoDB = async () => {
   try {
