@@ -15,6 +15,11 @@
       "default": "./dist/subtract.js"
     }
   },
+  "dependencies": {
+    "mongodb": "^6.9.0",
+    "mongoose": "^8.7.1",
+    "next": "14.2.14"
+  },
   "devDependencies": {
     "@repo/typescript-config": "*",
     "typescript": "latest"
