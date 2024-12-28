@@ -41,6 +41,10 @@ const menuDropDownItems: DropDownItem[] = [
     title: "Empréstimo e Financiamento",
     type: TransactionType.Emprestimo,
   },
+  {
+    title: "Salário",
+    type: TransactionType.Salario,
+  },
 ];
 
 export function Dropdown(props: Props) {

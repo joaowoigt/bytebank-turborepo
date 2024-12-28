@@ -22,6 +22,14 @@
       "types": "./src/extract.ts",
       "default": "./dist/extract.js"
     },
+    "./ExtractResponse": {
+      "types": "./src/data/responses/ExtractResponse.ts",
+      "default": "./dist/data/response/ExtractResponse.js"
+    },
+    "./TransactionType": {
+      "types": "./src/domain/models/TransactionType.ts",
+      "default": "./dist/domain/models/TransactionType.js"
+    },
     "./subtract": {
       "types": "./src/subtract.ts",
       "default": "./dist/subtract.js"
