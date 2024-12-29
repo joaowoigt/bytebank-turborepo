@@ -3,9 +3,10 @@ import { Dropdown, DropDownItem } from "@repo/ui/dropdown";
 import { Text } from "@repo/ui/texts";
 import { TransactionType } from "@repo/network/TransactionType";
 import { CreateTransactionRequest } from "@repo/network/add-transaction";
-import Router from "next/router";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import CurrencyInput from "react-currency-input-field";
+import http from "../../../http";
 
 export default function NewTransactionArea() {
   const [value, setValue] = useState<number>(0.0);
@@ -21,32 +22,17 @@ export default function NewTransactionArea() {
     console.log(value);
   };
 
-  const onSubmit = async () => {
-    try {
-      const requestParam: CreateTransactionRequest = {
-        value: value,
-        type: type,
-      };
-      const res = await fetch("/api/add-transaction", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestParam),
-      });
-
-      if (!res.ok) {
-        throw new Error("Erro ao criar transação");
-      }
-
-      if (res.status == 200) {
-        console.log("Transação criada com sucesso");
-        Router.reload();
-      }
-    } catch (error) {
-      console.log("Erro ao criar transação aqui");
-    }
-  };
+  function addTransaction() {
+    const transactionRequest = {
+      value: value,
+      type: type,
+      accountId: sessionStorage.getItem("accountId"),
+    };
+    http.post("/account/transaction", transactionRequest).then((response) => {
+      console.log(response);
+      window.location.reload();
+    });
+  }
 
   return (
     <div className="bg-grayVariant h-[420px] rounded-2xl flex flex-col  mx-big p-big mt-big mobile:items-center">
@@ -70,7 +56,7 @@ export default function NewTransactionArea() {
           intent="primary"
           text="Concluir transação"
           onClick={(event) => {
-            onSubmit();
+            addTransaction();
           }}
         ></Button>
       </div>

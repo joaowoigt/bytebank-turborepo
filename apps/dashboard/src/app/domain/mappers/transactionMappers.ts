@@ -13,7 +13,7 @@ export function mapTransactionDBToTransactionResponse(
     id: transactionDB.id,
     accountId: transactionDB.accountId,
     month: getMonthName(transactionDB.date),
-    type: transactionDB.type,
+    type: getNameForScreen(transactionDB.type),
     fullDate: getFullDate(transactionDB.date),
     value: formattedValue,
     date: transactionDB.date,
@@ -32,4 +32,15 @@ function getMonthName(apiDate: string): string {
   const convertedDate = new Date(apiDate);
   const month = convertedDate.toLocaleString("default", { month: "long" });
   return month.charAt(0).toUpperCase() + month.slice(1);
+}
+
+function getNameForScreen(type: string): string {
+  switch (type) {
+    case "Credit":
+      return "Crédito";
+    case "Débit":
+      return "Débito";
+    default:
+      return "Débito";
+  }
 }

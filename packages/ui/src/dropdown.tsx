@@ -11,40 +11,13 @@ interface Props {
 }
 
 export enum TransactionType {
-  CambioDeMoeda,
-  DOC,
-  Emprestimo,
-  Salario,
-}
-
-export function getTransactionType(value: any): TransactionType {
-  var currentEnum = TransactionType.Salario;
-  switch (value) {
-    case 0:
-      currentEnum = TransactionType.CambioDeMoeda;
-    case 1:
-      currentEnum = TransactionType.DOC;
-    case 2:
-      currentEnum = TransactionType.Emprestimo;
-    case 3:
-      currentEnum = TransactionType.Salario;
-    default:
-      currentEnum = TransactionType.Salario;
-  }
-  return currentEnum;
+  Credit = "Credit",
+  Debit = "Debit",
 }
 
 const menuDropDownItems: DropDownItem[] = [
-  { title: "Cambio de Moeda", type: TransactionType.CambioDeMoeda },
-  { title: "DOC/TED", type: TransactionType.DOC },
-  {
-    title: "Empréstimo e Financiamento",
-    type: TransactionType.Emprestimo,
-  },
-  {
-    title: "Salário",
-    type: TransactionType.Salario,
-  },
+  { title: "Débito", type: TransactionType.Debit },
+  { title: "Crédito", type: TransactionType.Credit },
 ];
 
 export function Dropdown(props: Props) {
