@@ -4,6 +4,6 @@ export type TransactionResponse = {
   month: string;
   type: string;
   fullDate: string;
-  value: number;
+  value: string;
   date: string;
 };

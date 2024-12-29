@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Text } from "@repo/ui/texts";
 import { Button } from "@repo/ui/buttons";
-import http from "../../../../home/src/http";
+import http from "./../../http";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");

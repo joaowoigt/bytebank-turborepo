@@ -1,11 +1,12 @@
 import { Text } from "@repo/ui/texts";
 import React, { useEffect, useState } from "react";
 
-export default function WelcomeArea() {
+export default function WelcomeArea({ name }: { name: string }) {
   const [currentDate, setCurrentDate] = useState(getDate());
+  const welcomeText = `Olá, ${name} :)`;
   return (
     <div className="flex flex-col">
-      <Text intent="Heading" color="white" text="Olá, João :)"></Text>
+      <Text intent="Heading" color="white" text={welcomeText}></Text>
       <Text intent="Small" color="white" text={currentDate} mt="big"></Text>
     </div>
   );

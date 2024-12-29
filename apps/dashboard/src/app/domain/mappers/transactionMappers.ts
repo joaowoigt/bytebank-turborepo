@@ -1,0 +1,35 @@
+import { TransactionResponse } from "@repo/network/ExtractResponse";
+
+export function mapTransactionDBToTransactionResponse(
+  transactionDB: any
+): TransactionResponse {
+  const formatter = new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
+  const formattedValue = formatter.format(transactionDB.value);
+
+  return {
+    id: transactionDB.id,
+    accountId: transactionDB.accountId,
+    month: getMonthName(transactionDB.date),
+    type: transactionDB.type,
+    fullDate: getFullDate(transactionDB.date),
+    value: formattedValue,
+    date: transactionDB.date,
+  };
+}
+
+function getFullDate(apiDate: string): string {
+  const convertedDate = new Date(apiDate);
+  const month = convertedDate.getMonth() + 1;
+  const year = convertedDate.getFullYear();
+  const date = convertedDate.getDate();
+  return `${date}/${month}/${year}`;
+}
+
+function getMonthName(apiDate: string): string {
+  const convertedDate = new Date(apiDate);
+  const month = convertedDate.toLocaleString("default", { month: "long" });
+  return month.charAt(0).toUpperCase() + month.slice(1);
+}

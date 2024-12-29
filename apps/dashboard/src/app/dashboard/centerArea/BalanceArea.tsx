@@ -2,27 +2,12 @@ import { Text } from "@repo/ui/texts";
 import { BalanceData } from "@repo/network/balance";
 import React, { useEffect, useState } from "react";
 
-export default function BalanceArea() {
-  const [currentBalance, setCurrentBalance] = useState("");
-
-  useEffect(() => {
-    async function getBalance() {
-      try {
-        const res = await fetch("http://localhost:5000/balance");
-        if (!res.ok) {
-          throw new Error("Erro ao buscar o saldo");
-        }
-
-        const data: BalanceData = await res.json();
-        console.log(data.value);
-        setCurrentBalance(data.value);
-      } catch (error) {
-        console.log(error);
-        console.log("Erro ao buscar o saldo");
-      }
-    }
-    getBalance();
+export default function BalanceArea({ balance }: { balance: number }) {
+  const formatter = new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
   });
+  const formattedValue = formatter.format(balance);
 
   return (
     <div className="flex flex-col w-[50%] my-auto">
@@ -46,7 +31,7 @@ export default function BalanceArea() {
       </div>
       <div className="bg-negative w-[180px] h-[1px] my-medium"></div>
       <Text intent="Small" color="white" text="Conta corrente"></Text>
-      <Text intent="ExtraHeading" color="white" text={currentBalance}></Text>
+      <Text intent="ExtraHeading" color="white" text={formattedValue}></Text>
     </div>
   );
 }
