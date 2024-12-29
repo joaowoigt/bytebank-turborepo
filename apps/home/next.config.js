@@ -1,7 +1,5 @@
 /** @type {import('next').NextConfig} */
 
-const { basePath, experimental } = require("../dashboard/next.config");
-
 const DASHBOARD_URL = process.env.DASHBOARD_URL || "http://localhost:3001";
 const LOGIN_URL = process.env.LOGIN_URL || "http://localhost:3002";
 
@@ -16,6 +14,8 @@ module.exports = {
         destination: `${DASHBOARD_URL}`,
         source: "/dashboard/:path*",
         destination: `${DASHBOARD_URL}/:path*`,
+      },
+      {
         source: "/login",
         destination: `${LOGIN_URL}`,
         source: "/login/:path*",
