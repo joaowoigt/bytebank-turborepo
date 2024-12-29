@@ -6,6 +6,10 @@ import http from "../../../../home/src/http";
 export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState({
+    show: false,
+    message: "Email ou senha invalidos",
+  });
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -17,17 +21,37 @@ export default function LoginForm() {
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (!email || !password) {
+      setError({ show: true, message: "Preencha os campos para prosseguir" });
+      return;
+    }
     http
       .post("/user/auth", { email: email, password: password })
       .then((response) => {
+        setError({
+          show: false,
+          message: "Preencha os campos para prosseguir",
+        });
         sessionStorage.setItem("token", response.data.result.token);
         window.location.href = "/dashboard";
+      })
+      .catch((error) => {
+        console.log(error);
+        setError({ show: true, message: "Email ou senha inválidos" });
       });
   };
   return (
     <div>
       <div className="flex flex-col items-center  w-[50%] justify-center border-2 border-white p-medium rounded-lg bg-white bg-opacity-10">
         <Text intent="Heading" color="black" style="bold" text="Login"></Text>
+        {error.show && (
+          <Text
+            intent="Regular"
+            color="negative"
+            style="bold"
+            text={error.message}
+          ></Text>
+        )}
         <form>
           <Text intent="Regular" color="black" style="bold" text="Email"></Text>
           <input
