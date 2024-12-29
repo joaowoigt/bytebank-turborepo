@@ -31,7 +31,7 @@ export default function ExtractList() {
           month={item.month}
           type={item.type}
           fullDate={item.fullDate}
-          value={item.value}
+          value={item.value.toString()}
         ></ExtractItem>
       ))}
     </div>
