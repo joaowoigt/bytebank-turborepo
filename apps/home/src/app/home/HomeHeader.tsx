@@ -1,9 +1,10 @@
 import { HamburguerMenu, LogoIcon } from "@repo/ui/icons";
 import { Text } from "@repo/ui/texts";
 import { Button } from "@repo/ui/buttons";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export function HomeHeader() {
+  const router = useRouter();
   return (
     <header className="bg-black w-auto h-[96px] flex flex-row items-center pr-[10%] justify-around mobile:hidden">
       <div className="flex flex-row items-center w-[50%]">
@@ -15,20 +16,14 @@ export function HomeHeader() {
       </div>
       <div className="flex flex-row">
         <div className="w-[180] mr-big">
-          <Button
-            intent="secondary"
-            text="Abrir minha conta"
-            onClick={(event) => {
-              console.log("clicou no primeiro botao");
-            }}
-          ></Button>
+          <Button intent="secondary" text="">
+            <a href="/login">Abrir minha conta</a>
+          </Button>
         </div>
         <div className="w-[180]">
-          <Button
-            intent="secondaryVariant"
-            text="Já tenho conta"
-            onClick={(event) => {}}
-          ></Button>
+          <Button intent="secondaryVariant" text="">
+            <a href="/login">Já tenho conta</a>
+          </Button>
         </div>
       </div>
     </header>

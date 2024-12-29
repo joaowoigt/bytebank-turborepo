@@ -29,7 +29,8 @@ const buttonStyles = cva(
 
 interface ButtonProps extends VariantProps<typeof buttonStyles> {
   text: string;
-  onClick: (event: any) => void;
+  onClick?: (event: any) => void;
+  children?: any;
 }
 
 export function Button({
@@ -46,6 +47,7 @@ export function Button({
       {...props}
     >
       {text}
+      {props.children}
     </button>
   );
 }
