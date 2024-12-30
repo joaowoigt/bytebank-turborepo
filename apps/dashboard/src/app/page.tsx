@@ -32,7 +32,7 @@ export default function Page(): JSX.Element {
             (acc: number, item) => {
               return acc + item.value;
             },
-            0
+            0,
           );
           setCurrentBalance(balance);
           setExtractList(mappedList);

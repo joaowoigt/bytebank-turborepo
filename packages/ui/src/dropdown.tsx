@@ -23,7 +23,7 @@ const menuDropDownItems: DropDownItem[] = [
 export function Dropdown(props: Props) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [selected, setSelected] = useState<string>(
-    "Seleceione o tipo de transação"
+    "Seleceione o tipo de transação",
   );
   const toggle = () => {
     setIsOpen((old) => !old);

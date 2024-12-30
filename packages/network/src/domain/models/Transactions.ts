@@ -10,7 +10,7 @@ const transactionSchema = new Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 const transaction =

@@ -1,7 +1,7 @@
 import { TransactionResponse } from "@repo/network/ExtractResponse";
 
 export function mapTransactionDBToTransactionResponse(
-  transactionDB: any
+  transactionDB: any,
 ): TransactionResponse {
   const formatter = new Intl.NumberFormat("pt-BR", {
     style: "currency",

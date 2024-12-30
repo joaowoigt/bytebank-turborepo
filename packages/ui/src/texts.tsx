@@ -48,7 +48,7 @@ export function Text({
   text,
   hover,
   ...props
-}: ButtonProps) {
+}: ButtonProps): JSX.Element {
   return (
     <text
       className={textStyles({ intent, color, style, hover, mt })}
