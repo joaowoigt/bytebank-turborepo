@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { JSX } from "react";
 import LoginForm from "./loginForm";
 
 export default function Page(): JSX.Element {

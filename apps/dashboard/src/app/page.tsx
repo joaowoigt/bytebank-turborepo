@@ -9,6 +9,16 @@ import http from "../http";
 import { useEffect, useState } from "react";
 import { mapTransactionDBToTransactionResponse } from "./domain/mappers/transactionMappers";
 
+type TransactionDB = {
+  id: string;
+  accountId: string;
+  month: string;
+  type: string;
+  fullDate: string;
+  value: string;
+  date: string;
+};
+
 export default function Page(): JSX.Element {
   const [extractList, setExtractList] = useState<TransactionResponse[]>([]);
   const [currentBalance, setCurrentBalance] = useState(0);
@@ -25,14 +35,16 @@ export default function Page(): JSX.Element {
         const accountid = sessionStorage.getItem("accountId");
         http.get(`account/${accountid}/statement`).then((response) => {
           console.log(response.data.result.transactions);
-          const mappedList = response.data.result.transactions.map((item) => {
-            return mapTransactionDBToTransactionResponse(item);
-          });
+          const mappedList = response.data.result.transactions.map(
+            (item: TransactionDB) => {
+              return mapTransactionDBToTransactionResponse(item);
+            }
+          );
           const balance = response.data.result.transactions.reduce(
-            (acc: number, item) => {
+            (acc: number, item: TransactionDB) => {
               return acc + item.value;
             },
-            0,
+            0
           );
           setCurrentBalance(balance);
           setExtractList(mappedList);
