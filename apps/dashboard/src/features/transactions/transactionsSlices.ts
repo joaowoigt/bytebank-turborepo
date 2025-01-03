@@ -21,6 +21,30 @@ export const selectTransactions = createSelector(
   (transactions) => transactions
 );
 
+export const selectDebitValue = createSelector(
+  selectTransactions,
+  (transactions) => {
+    const debitList = transactions.filter(
+      (transaction: TransactionResponse) => transaction.type === "Débito"
+    );
+    return debitList.reduce((acc: number, item: TransactionResponse) => {
+      return acc + item.valueNumber;
+    }, 0);
+  }
+);
+
+export const selectCreditValue = createSelector(
+  selectTransactions,
+  (transactions) => {
+    const debitList = transactions.filter(
+      (transaction: TransactionResponse) => transaction.type === "Crédito"
+    );
+    return debitList.reduce((acc: number, item: TransactionResponse) => {
+      return acc + item.valueNumber;
+    }, 0);
+  }
+);
+
 export const { setTransactions } = transactionsSlice.actions;
 
 export default transactionsSlice.reducer;

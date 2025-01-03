@@ -5,5 +5,6 @@ export type TransactionResponse = {
   type: string;
   fullDate: string;
   value: string;
+  valueNumber: number;
   date: string;
 };

@@ -1,7 +1,7 @@
 import { TransactionResponse } from "@repo/network/ExtractResponse";
 
 export function mapTransactionDBToTransactionResponse(
-  transactionDB: any,
+  transactionDB: any
 ): TransactionResponse {
   const formatter = new Intl.NumberFormat("pt-BR", {
     style: "currency",
@@ -16,6 +16,7 @@ export function mapTransactionDBToTransactionResponse(
     type: getNameForScreen(transactionDB.type),
     fullDate: getFullDate(transactionDB.date),
     value: formattedValue,
+    valueNumber: transactionDB.value,
     date: transactionDB.date,
   };
 }

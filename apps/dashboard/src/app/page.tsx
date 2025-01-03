@@ -11,6 +11,7 @@ import { Provider, useDispatch } from "react-redux";
 import store from "../store";
 import { setTransactions } from "../features/transactions/transactionsSlices";
 import { setExtract } from "../features/filteredList/filteredListSlices";
+import DashboardChartArea from "./dashboard/chartArea/DashboardChartArea";
 
 type TransactionDB = {
   id: string;
@@ -71,6 +72,7 @@ export default function Page(): JSX.Element {
               name={name}
             ></DashboardCenterArea>
             <NewTransactionArea></NewTransactionArea>
+            <DashboardChartArea></DashboardChartArea>
           </div>
           <DashboardExtractArea></DashboardExtractArea>
         </div>
