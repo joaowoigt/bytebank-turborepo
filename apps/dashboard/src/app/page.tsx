@@ -8,6 +8,9 @@ import { TransactionResponse } from "@repo/network/ExtractResponse";
 import http from "../http";
 import { useEffect, useState } from "react";
 import { mapTransactionDBToTransactionResponse } from "./domain/mappers/transactionMappers";
+import { Provider, useDispatch } from "react-redux";
+import store from "../store";
+import { setTransactions } from "../features/transactions/transactionsSlices";
 
 type TransactionDB = {
   id: string;
@@ -20,9 +23,9 @@ type TransactionDB = {
 };
 
 export default function Page(): JSX.Element {
-  const [extractList, setExtractList] = useState<TransactionResponse[]>([]);
   const [currentBalance, setCurrentBalance] = useState(0);
   const [name, setName] = useState("");
+  const dispatch = useDispatch();
   function fetchAccount() {
     http
       .get("/account")
@@ -47,7 +50,7 @@ export default function Page(): JSX.Element {
             0
           );
           setCurrentBalance(balance);
-          setExtractList(mappedList);
+          dispatch(setTransactions(mappedList));
         });
       });
   }
@@ -56,19 +59,21 @@ export default function Page(): JSX.Element {
     fetchAccount();
   }, []);
   return (
-    <div className="bg-secondaryVariant w-auto h-auto flex flex-col mobile:w-full">
-      <DashboardHeader></DashboardHeader>
-      <div className="flex flex-row  mt-big w-auto justify-center mobile:flex-col">
-        <DasboardSideMenu></DasboardSideMenu>
-        <div className=" w-[100%] max-w-[680px] flex flex-col mobile:w-full">
-          <DashboardCenterArea
-            balance={currentBalance}
-            name={name}
-          ></DashboardCenterArea>
-          <NewTransactionArea></NewTransactionArea>
+    <Provider store={store}>
+      <div className="bg-secondaryVariant w-auto h-auto flex flex-col mobile:w-full">
+        <DashboardHeader></DashboardHeader>
+        <div className="flex flex-row  mt-big w-auto justify-center mobile:flex-col">
+          <DasboardSideMenu></DasboardSideMenu>
+          <div className=" w-[100%] max-w-[680px] flex flex-col mobile:w-full">
+            <DashboardCenterArea
+              balance={currentBalance}
+              name={name}
+            ></DashboardCenterArea>
+            <NewTransactionArea></NewTransactionArea>
+          </div>
+          <DashboardExtractArea></DashboardExtractArea>
         </div>
-        <DashboardExtractArea extractList={extractList}></DashboardExtractArea>
       </div>
-    </div>
+    </Provider>
   );
 }
