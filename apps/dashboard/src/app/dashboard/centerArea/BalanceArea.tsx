@@ -1,6 +1,5 @@
 import { Text } from "@repo/ui/texts";
-import { BalanceData } from "@repo/network/balance";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 export default function BalanceArea({ balance }: { balance: number }) {
   const formatter = new Intl.NumberFormat("pt-BR", {

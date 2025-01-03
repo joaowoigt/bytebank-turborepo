@@ -13,7 +13,8 @@
     "./texts": "./src/texts.tsx",
     "./buttons": "./src/buttons.tsx",
     "./dropdown": "./src/dropdown.tsx",
-    "./icons": "./src/icons.tsx"
+    "./icons": "./src/icons.tsx",
+    "./filterdropdown": "./src/filterdropdown.tsx"
   },
   "license": "MIT",
   "scripts": {

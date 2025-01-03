@@ -4,13 +4,13 @@ import DashboardHeader from "./dashboard/DashboardHeader";
 import DasboardSideMenu from "./dashboard/DashboardSideMenu";
 import DashboardExtractArea from "./dashboard/extractArea/DashboardExtract";
 import NewTransactionArea from "./dashboard/NewTransactionArea/NewTransactionArea";
-import { TransactionResponse } from "@repo/network/ExtractResponse";
 import http from "../http";
 import { useEffect, useState } from "react";
 import { mapTransactionDBToTransactionResponse } from "./domain/mappers/transactionMappers";
 import { Provider, useDispatch } from "react-redux";
 import store from "../store";
 import { setTransactions } from "../features/transactions/transactionsSlices";
+import { setExtract } from "../features/filteredList/filteredListSlices";
 
 type TransactionDB = {
   id: string;
@@ -51,6 +51,7 @@ export default function Page(): JSX.Element {
           );
           setCurrentBalance(balance);
           dispatch(setTransactions(mappedList));
+          dispatch(setExtract(mappedList));
         });
       });
   }

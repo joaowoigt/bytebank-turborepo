@@ -1,5 +1,5 @@
 import { Text } from "@repo/ui/texts";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 export default function WelcomeArea({ name }: { name: string }) {
   const [currentDate, setCurrentDate] = useState(getDate());

@@ -1,14 +1,14 @@
 import { TransactionResponse } from "@repo/network/ExtractResponse";
 import ExtractItem from "./ExtractItem";
+import { useSelector } from "react-redux";
+import { selectFilteredList } from "../../../features/filteredList/filteredListSlices";
 
-export default function ExtractList({
-  extractList,
-}: {
-  extractList: TransactionResponse[];
-}) {
+export default function ExtractList() {
+  const transactions: TransactionResponse[] = useSelector(selectFilteredList);
+
   return (
     <div>
-      {extractList.map((item) => (
+      {transactions.map((item) => (
         <ExtractItem
           key={item.id}
           _id={item.id}

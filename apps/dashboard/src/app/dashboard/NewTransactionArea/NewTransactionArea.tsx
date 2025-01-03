@@ -2,9 +2,7 @@ import { Button } from "@repo/ui/buttons";
 import { Dropdown, DropDownItem } from "@repo/ui/dropdown";
 import { Text } from "@repo/ui/texts";
 import { TransactionType } from "@repo/network/TransactionType";
-import { CreateTransactionRequest } from "@repo/network/add-transaction";
-import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import CurrencyInput from "react-currency-input-field";
 import http from "../../../http";
 

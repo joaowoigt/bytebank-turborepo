@@ -1,8 +1,4 @@
-import {
-  HamburguerMenu,
-  HamburguerMenuVariant,
-  ProfileIcon,
-} from "@repo/ui/icons";
+import { ProfileIcon } from "@repo/ui/icons";
 import { Text } from "@repo/ui/texts";
 import HamburguerMenuDashboard from "./HamburguerMenuDashboard";
 

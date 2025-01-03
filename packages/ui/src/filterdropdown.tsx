@@ -10,21 +10,21 @@ interface Props {
   onSelect: (item: any) => void;
 }
 
-export enum TransactionType {
-  Credit = "Credit",
-  Debit = "Debit",
+export enum FilterTypes {
+  Credit = "Crédito",
+  Debit = "Débito",
+  All = "All",
 }
 
 const menuDropDownItems: DropDownItem[] = [
-  { title: "Débito", type: TransactionType.Debit },
-  { title: "Crédito", type: TransactionType.Credit },
+  { title: "Débito", type: FilterTypes.Debit },
+  { title: "Crédito", type: FilterTypes.Credit },
+  { title: "Todas transações", type: FilterTypes.All },
 ];
 
-export function Dropdown(props: Props) {
+export function FilterDropdown(props: Props) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [selected, setSelected] = useState<string>(
-    "Seleceione o tipo de transação"
-  );
+  const [selected, setSelected] = useState<string>("Todas transações");
   const toggle = () => {
     setIsOpen((old) => !old);
   };
@@ -40,7 +40,7 @@ export function Dropdown(props: Props) {
     <>
       <div className="ui-relative">
         <div
-          className="ui-outline ui-outline-1 ui-outline-primary  ui-bg-white ui-rounded-md ui-px-small ui-w-[355px] mobile:ui-w-[270px] ui-py-small ui-text-black ui-text-start ui-flex ui-flex-row ui-justify-between hover:ui-cursor-pointer"
+          className="ui-outline ui-outline-1 ui-outline-primary  ui-bg-white ui-rounded-md ui-px-small ui-w-[250px] mobile:ui-w-[270px] ui-py-small ui-text-black ui-text-start ui-flex ui-flex-row ui-justify-between hover:ui-cursor-pointer"
           onClick={toggle}
         >
           <Text text={selected} intent="Small" color="black"></Text>
@@ -79,12 +79,12 @@ export function Dropdown(props: Props) {
           )}
         </div>
         <div
-          className={`ui-absolute ui-z-30 ui-w-[355px] ui-flex ui-flex-col ui-items-center ui-bg-white ui-rounded-md  ui-outline ui-outline-1 ui-outline-primary  ${transClass} mobile:ui-w-[270px]`}
+          className={`ui-absolute ui-z-30 ui-w-[250px] ui-flex ui-flex-col ui-items-center ui-bg-white ui-rounded-md  ui-outline ui-outline-1 ui-outline-primary  ${transClass} mobile:ui-w-[270px]`}
         >
           {menuDropDownItems.map((item) => (
             <a
               key={item.title}
-              className="hover:ui-bg-secondaryVariant  hover:ui-font-semibold hover:ui-cursor-pointer ui-text-black ui-w-[355px] ui-text-center ui-py-small mobile:ui-w-[270px]"
+              className="hover:ui-bg-secondaryVariant  hover:ui-font-semibold hover:ui-cursor-pointer ui-text-black ui-w-[250px] ui-text-center ui-py-small mobile:ui-w-[270px]"
               onClick={() => {
                 onItemSelected(item);
                 props.onSelect(item.type);
