@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import {
   selectCreditValue,
   selectDebitValue,
-} from "../../../features/transactions/transactionsSlices";
+} from "../../../selectors/TransactionSelectors";
 
 export default function DashboardChartArea() {
   const debitValue = useSelector(selectDebitValue);

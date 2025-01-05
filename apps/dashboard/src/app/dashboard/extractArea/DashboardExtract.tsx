@@ -1,7 +1,7 @@
 import { Text } from "@repo/ui/texts";
 import ExtractList from "./ExtractList";
 import { FilterDropdown, FilterTypes } from "@repo/ui/filterdropdown";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   setExtract,
   setFilter,

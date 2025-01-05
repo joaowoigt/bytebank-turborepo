@@ -1,7 +1,20 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { TransactionResponse } from "@repo/network/ExtractResponse";
+import { setupPagination } from "../../utils/paginations";
+import { handleFilter } from "../../utils/filter";
 
-const initialState = {
+export interface TransactionState {
+  transactions: TransactionResponse[];
+  filteredList: TransactionResponse[];
+  filter: string;
+  pagination: {
+    totalPages: number;
+    currentPage: number;
+    itemsPerPage: number;
+  };
+}
+
+const initialState: TransactionState = {
   transactions: [],
   filteredList: [],
   filter: "All",
@@ -22,25 +35,14 @@ const transactionsSlice = createSlice({
     setExtract(state) {
       // pagination setup
       const transactions: TransactionResponse[] = state.transactions;
-      const currentPage = state.pagination.currentPage;
-      const itemsPerPage = state.pagination.itemsPerPage;
-      state.pagination.totalPages = Math.ceil(
-        transactions.length / itemsPerPage
-      );
-      const startIndex = (currentPage - 1) * itemsPerPage;
-      const lastIndex = startIndex + itemsPerPage;
-
-      const pageList = transactions.slice(startIndex, lastIndex);
+      const pageList: TransactionResponse[] = setupPagination(state);
 
       // return filtered list
-      const filter = state.filter;
-      if (filter === "All") {
-        (state.filteredList as TransactionResponse[]) = pageList;
-      } else {
-        (state.filteredList as TransactionResponse[]) = transactions.filter(
-          (transaction: TransactionResponse) => transaction.type === filter
-        );
-      }
+      (state.filteredList as TransactionResponse[]) = handleFilter(
+        state,
+        pageList,
+        transactions
+      );
     },
     setFilter(state, action) {
       state.filter = action.payload;
@@ -50,50 +52,6 @@ const transactionsSlice = createSlice({
     },
   },
 });
-
-export const selectTransactions = createSelector(
-  (state) => state.transactions.transactions,
-  (transactions) => transactions
-);
-
-export const selectDebitValue = createSelector(
-  selectTransactions,
-  (transactions) => {
-    const debitList = transactions.filter(
-      (transaction: TransactionResponse) => transaction.type === "Débito"
-    );
-    return debitList.reduce((acc: number, item: TransactionResponse) => {
-      return acc + item.valueNumber;
-    }, 0);
-  }
-);
-
-export const selectCreditValue = createSelector(
-  selectTransactions,
-  (transactions) => {
-    const debitList = transactions.filter(
-      (transaction: TransactionResponse) => transaction.type === "Crédito"
-    );
-    return debitList.reduce((acc: number, item: TransactionResponse) => {
-      return acc + item.valueNumber;
-    }, 0);
-  }
-);
-
-export const selectFilteredList = createSelector(
-  (state) => state.transactions.filteredList,
-  (filteredList) => filteredList
-);
-
-export const selectFilter = createSelector(
-  (state) => state.transactions.filter,
-  (filter) => filter
-);
-
-export const selectTotalPages = createSelector(
-  (state) => state.transactions.pagination.totalPages,
-  (totalPages) => totalPages
-);
 
 export const { setTransactions, setExtract, setFilter, setCurrentPage } =
   transactionsSlice.actions;
