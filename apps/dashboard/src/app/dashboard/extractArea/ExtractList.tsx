@@ -1,4 +1,3 @@
-import { TransactionResponse } from "@repo/network/ExtractResponse";
 import ExtractItem from "./ExtractItem";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -6,19 +5,20 @@ import {
   setExtract,
 } from "../../../features/transactions/transactionsSlices";
 import { BackIcon, NextIcon } from "@repo/ui/icons";
+import { Transaction } from "../../domain/models/Transaction";
 
 export default function ExtractList() {
   const dispatch = useDispatch();
-  const transactions: TransactionResponse[] = useSelector(
-    (state) => state.transactions.filteredList
+  const transactions: Transaction[] = useSelector(
+    (state: any) => state.transactions.filteredList
   );
   const currentPage: number = useSelector(
-    (state) => state.transactions.pagination.currentPage
+    (state: any) => state.transactions.pagination.currentPage
   );
   const totalPage: number = useSelector(
-    (state) => state.transactions.pagination.totalPages
+    (state: any) => state.transactions.pagination.totalPages
   );
-  const filter: String = useSelector((state) => state.transactions.filter);
+  const filter: String = useSelector((state: any) => state.transactions.filter);
 
   const handleBackAction = () => {
     dispatch(setCurrentPage(currentPage - 1));
