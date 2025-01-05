@@ -2,26 +2,19 @@ import { Text } from "@repo/ui/texts";
 import ExtractList from "./ExtractList";
 import { FilterDropdown, FilterTypes } from "@repo/ui/filterdropdown";
 import { useDispatch, useSelector } from "react-redux";
-import { setFilter } from "../../../features/filter/filtersSlices";
-import { selectTransactions } from "../../../features/transactions/transactionsSlices";
+import {
+  selectTransactions,
+  setExtract,
+  setFilter,
+} from "../../../features/transactions/transactionsSlices";
 import { TransactionResponse } from "@repo/network/ExtractResponse";
-import { setExtract } from "../../../features/filteredList/filteredListSlices";
 
 export default function DashboardExtractArea(): JSX.Element {
   const transactions: TransactionResponse[] = useSelector(selectTransactions);
   const dispatch = useDispatch();
   const handleFilter = (item: FilterTypes) => {
     dispatch(setFilter(item));
-    if (item === "All") {
-      dispatch(setExtract(transactions));
-    } else {
-      transactions.forEach((transaction) => console.log(transaction.type));
-      dispatch(
-        setExtract(
-          transactions.filter((transaction) => transaction.type === item)
-        )
-      );
-    }
+    dispatch(setExtract(transactions));
   };
 
   return (
