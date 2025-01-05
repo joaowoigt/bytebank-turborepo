@@ -40,7 +40,6 @@ export default function Page(): JSX.Element {
       .then(() => {
         const accountid = sessionStorage.getItem("accountId");
         http.get(`account/${accountid}/statement`).then((response) => {
-          console.log(response.data.result.transactions);
           const mappedList = response.data.result.transactions.map(
             (item: TransactionDB) => {
               return mapTransactionDBToTransactionResponse(item);
@@ -54,7 +53,7 @@ export default function Page(): JSX.Element {
           );
           setCurrentBalance(balance);
           dispatch(setTransactions(mappedList));
-          dispatch(setExtract(mappedList));
+          dispatch(setExtract());
         });
       });
   }
