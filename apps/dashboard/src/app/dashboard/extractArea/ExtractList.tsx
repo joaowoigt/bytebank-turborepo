@@ -26,7 +26,6 @@ export default function ExtractList() {
   };
 
   const handleNextAction = () => {
-    console.log("No clique");
     dispatch(setCurrentPage(currentPage + 1));
     dispatch(setExtract());
   };

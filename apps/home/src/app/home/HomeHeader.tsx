@@ -1,10 +1,8 @@
 import { HamburguerMenu, LogoIcon } from "@repo/ui/icons";
 import { Text } from "@repo/ui/texts";
 import { Button } from "@repo/ui/buttons";
-import { useRouter } from "next/navigation";
 
 export function HomeHeader() {
-  const router = useRouter();
   return (
     <header className="bg-black w-auto h-[96px] flex flex-row items-center pr-[10%] justify-around mobile:hidden">
       <div className="flex flex-row items-center w-[50%]">

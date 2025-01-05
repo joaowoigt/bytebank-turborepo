@@ -1,23 +1,20 @@
 import { Button } from "@repo/ui/buttons";
-import { Dropdown, DropDownItem } from "@repo/ui/dropdown";
+import { Dropdown, DropDownItem, TransactionType } from "@repo/ui/dropdown";
 import { Text } from "@repo/ui/texts";
-import { TransactionType } from "@repo/network/TransactionType";
 import React, { useState } from "react";
 import CurrencyInput from "react-currency-input-field";
 import http from "../../../http";
 
 export default function NewTransactionArea() {
   const [value, setValue] = useState<number>(0.0);
-  const [type, setType] = useState<number>(0);
+  const [type, setType] = useState<string>("");
 
-  const onSelectedType = (type: number) => {
+  const onSelectedType = (type: string) => {
     setType(type);
-    console.log(type);
   };
 
   const onChange = (text: number) => {
     setValue(text);
-    console.log(value);
   };
 
   function addTransaction() {

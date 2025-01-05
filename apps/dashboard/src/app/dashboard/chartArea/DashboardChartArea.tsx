@@ -9,7 +9,6 @@ import {
 export default function DashboardChartArea() {
   const debitValue = useSelector(selectDebitValue);
   const creditValue = useSelector(selectCreditValue);
-  console.log("charts", debitValue, creditValue);
   ChartJS.register([ArcElement, Tooltip, Legend]);
   ChartJS.defaults.font.size = 24;
   ChartJS.defaults.color = "white";

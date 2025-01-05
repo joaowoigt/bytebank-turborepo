@@ -1,7 +1,9 @@
 import { Text } from "@repo/ui/texts";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
-export default function WelcomeArea({ name }: { name: string }) {
+export default function WelcomeArea() {
+  const name = useSelector((state: any) => state.centerArea.name);
   const [currentDate, setCurrentDate] = useState(getDate());
   const welcomeText = `Olá, ${name} :)`;
   return (

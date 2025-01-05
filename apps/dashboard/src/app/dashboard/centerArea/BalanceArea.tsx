@@ -1,7 +1,9 @@
 import { Text } from "@repo/ui/texts";
 import React from "react";
+import { useSelector } from "react-redux";
 
-export default function BalanceArea({ balance }: { balance: number }) {
+export default function BalanceArea() {
+  const balance = useSelector((state: any) => state.centerArea.balance);
   const formatter = new Intl.NumberFormat("pt-BR", {
     style: "currency",
     currency: "BRL",
