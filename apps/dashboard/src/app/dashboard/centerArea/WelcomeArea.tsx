@@ -19,15 +19,15 @@ function getDate() {
   const date = today.getDate();
   const dayNumber = today.getDay();
   const weekDay = weekday[dayNumber];
-  return `${weekDay}, ${month}/${date}/${year}`;
+  return `${weekDay}, ${date}/${month}/${year}`;
 }
 
 const weekday: string[] = [
+  "Domingo",
   "Segunda-feira",
   "Terça-feira",
   "Quarta-feira",
   "Quinta-feira",
   "Sexta-feira",
   "Sabado",
-  "Domingo",
 ];
