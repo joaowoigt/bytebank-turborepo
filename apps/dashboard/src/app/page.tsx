@@ -15,16 +15,7 @@ import {
 } from "../features/transactions/transactionsSlices";
 import DashboardChartArea from "./dashboard/chartArea/DashboardChartArea";
 import { setBalance, setName } from "../features/balance/CenterAreaSlice";
-
-type TransactionDB = {
-  id: string;
-  accountId: string;
-  month: string;
-  type: string;
-  fullDate: string;
-  value: string;
-  date: string;
-};
+import { TransactionDB } from "./data/TransactionDB";
 
 export default function Page(): JSX.Element {
   const dispatch = useDispatch();
