@@ -11,15 +11,15 @@ module.exports = {
     return [
       {
         source: "/dashboard",
-        destination: `https://bytebank-turborepo-dashboard.vercel.app/`,
+        destination: `${DASHBOARD_URL}`,
         source: "/dashboard/:path*",
-        destination: `https://bytebank-turborepo-dashboard.vercel.app/:path*`,
+        destination: `${DASHBOARD_URL}:path*`,
       },
       {
         source: "/login",
-        destination: `https://bytebank-turborepo-login.vercel.app/`,
+        destination: `${LOGIN_URL}`,
         source: "/login/:path*",
-        destination: `https://bytebank-turborepo-login.vercel.app/:path*`,
+        destination: `${LOGIN_URL}:path*`,
       },
     ];
   },
