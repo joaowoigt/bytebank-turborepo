@@ -14,6 +14,7 @@ import {
   setTransactions,
 } from "../features/transactions/transactionsSlices";
 import DashboardChartArea from "./dashboard/chartArea/DashboardChartArea";
+import { setBalance, setName } from "../features/balance/CenterAreaSlice";
 
 type TransactionDB = {
   id: string;
@@ -26,16 +27,13 @@ type TransactionDB = {
 };
 
 export default function Page(): JSX.Element {
-  const [currentBalance, setCurrentBalance] = useState(0);
-  const [name, setName] = useState("");
   const dispatch = useDispatch();
   function fetchAccount() {
     http
       .get("/account")
       .then((response) => {
         sessionStorage.setItem("accountId", response.data.result.account[0].id);
-        setName(response.data.result.cards[0].name);
-        console.log(response);
+        dispatch(setName(response.data.result.cards[0].name));
       })
       .then(() => {
         const accountid = sessionStorage.getItem("accountId");
@@ -51,7 +49,7 @@ export default function Page(): JSX.Element {
             },
             0
           );
-          setCurrentBalance(balance);
+          dispatch(setBalance(balance));
           dispatch(setTransactions(mappedList));
           dispatch(setExtract());
         });
@@ -68,10 +66,7 @@ export default function Page(): JSX.Element {
         <div className="flex flex-row  mt-big w-auto justify-center mobile:flex-col">
           <DasboardSideMenu></DasboardSideMenu>
           <div className=" w-[100%] max-w-[680px] flex flex-col mobile:w-full">
-            <DashboardCenterArea
-              balance={currentBalance}
-              name={name}
-            ></DashboardCenterArea>
+            <DashboardCenterArea></DashboardCenterArea>
             <NewTransactionArea></NewTransactionArea>
             <DashboardChartArea></DashboardChartArea>
           </div>
