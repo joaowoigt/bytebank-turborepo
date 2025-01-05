@@ -1,4 +1,4 @@
-export type TransactionResponse = {
+export type Transaction = {
   id: string;
   accountId: string;
   month: string;

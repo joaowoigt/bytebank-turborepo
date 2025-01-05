@@ -1,17 +1,17 @@
-import { TransactionResponse } from "@repo/network/ExtractResponse";
+import { Transaction } from "../app/domain/models/Transaction";
 import { TransactionState } from "../features/transactions/transactionsSlices";
 
 export function handleFilter(
   state: TransactionState,
-  pageList: TransactionResponse[],
-  allTransactions: TransactionResponse[]
+  pageList: Transaction[],
+  allTransactions: Transaction[]
 ) {
   const filter = state.filter;
   if (filter === "All") {
     return pageList;
   } else {
     return allTransactions.filter(
-      (transaction: TransactionResponse) => transaction.type === filter
+      (transaction: Transaction) => transaction.type === filter
     );
   }
 }

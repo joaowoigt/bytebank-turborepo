@@ -1,11 +1,11 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
-import { TransactionResponse } from "@repo/network/ExtractResponse";
 import { setupPagination } from "../../utils/paginations";
 import { handleFilter } from "../../utils/filter";
+import { Transaction } from "../../app/domain/models/Transaction";
 
 export interface TransactionState {
-  transactions: TransactionResponse[];
-  filteredList: TransactionResponse[];
+  transactions: Transaction[];
+  filteredList: Transaction[];
   filter: string;
   pagination: {
     totalPages: number;
@@ -34,11 +34,11 @@ const transactionsSlice = createSlice({
     },
     setExtract(state) {
       // pagination setup
-      const transactions: TransactionResponse[] = state.transactions;
-      const pageList: TransactionResponse[] = setupPagination(state);
+      const transactions: Transaction[] = state.transactions;
+      const pageList: Transaction[] = setupPagination(state);
 
       // return filtered list
-      (state.filteredList as TransactionResponse[]) = handleFilter(
+      (state.filteredList as Transaction[]) = handleFilter(
         state,
         pageList,
         transactions

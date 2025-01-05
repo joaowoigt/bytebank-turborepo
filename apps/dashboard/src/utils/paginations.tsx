@@ -1,10 +1,8 @@
-import { TransactionResponse } from "@repo/network/ExtractResponse";
+import { Transaction } from "../app/domain/models/Transaction";
 import { TransactionState } from "../features/transactions/transactionsSlices";
 
-export function setupPagination(
-  state: TransactionState
-): TransactionResponse[] {
-  const transactions: TransactionResponse[] = state.transactions;
+export function setupPagination(state: TransactionState): Transaction[] {
+  const transactions: Transaction[] = state.transactions;
   const currentPage = state.pagination.currentPage;
   const itemsPerPage = state.pagination.itemsPerPage;
   state.pagination.totalPages = Math.ceil(transactions.length / itemsPerPage);

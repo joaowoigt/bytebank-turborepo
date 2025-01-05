@@ -6,19 +6,19 @@ import {
   setExtract,
 } from "../../../features/transactions/transactionsSlices";
 import { BackIcon, NextIcon } from "@repo/ui/icons";
-import {
-  selectFilteredList,
-  selectCurrentPage,
-  selectTotalPages,
-  selectFilter,
-} from "../../../selectors/TransactionSelectors";
 
 export default function ExtractList() {
   const dispatch = useDispatch();
-  const transactions: TransactionResponse[] = useSelector(selectFilteredList);
-  const currentPage: number = useSelector(selectCurrentPage);
-  const totalPage: number = useSelector(selectTotalPages);
-  const filter: String = useSelector(selectFilter);
+  const transactions: TransactionResponse[] = useSelector(
+    (state) => state.transactions.filteredList
+  );
+  const currentPage: number = useSelector(
+    (state) => state.transactions.pagination.currentPage
+  );
+  const totalPage: number = useSelector(
+    (state) => state.transactions.pagination.totalPages
+  );
+  const filter: String = useSelector((state) => state.transactions.filter);
 
   const handleBackAction = () => {
     dispatch(setCurrentPage(currentPage - 1));

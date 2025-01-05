@@ -1,8 +1,8 @@
-import { TransactionResponse } from "@repo/network/ExtractResponse";
+import { Transaction } from "../models/Transaction";
 
 export function mapTransactionDBToTransactionResponse(
   transactionDB: any
-): TransactionResponse {
+): Transaction {
   const formatter = new Intl.NumberFormat("pt-BR", {
     style: "currency",
     currency: "BRL",
