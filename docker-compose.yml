@@ -11,36 +11,6 @@ services:
       - 3000:3000
     networks:
       - app_network
-  dashboard:
-    container_name: dashboard
-    build:
-      context: .
-      dockerfile: ./apps/dashboard/Dockerfile
-    restart: always
-    ports:
-      - 3001:3001
-    networks:
-      - app_network
-  login:
-    container_name: login
-    build:
-      context: .
-      dockerfile: ./apps/login/Dockerfile
-    restart: always
-    ports:
-      - 3002:3002
-    networks:
-      - app_network
-  api:
-    container_name: api
-    build:
-      context: .
-      dockerfile: ./apps/api/Dockerfile
-    restart: always
-    ports:
-      - 5001:5001
-    networks:
-      - app_network
 
 # Define a network, which allows containers to communicate
 # with each other, by using their container name as a hostname

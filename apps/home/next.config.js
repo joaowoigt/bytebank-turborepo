@@ -4,6 +4,7 @@ const DASHBOARD_URL = process.env.DASHBOARD_URL || "http://localhost:3001";
 const LOGIN_URL = process.env.LOGIN_URL || "http://localhost:3002";
 
 module.exports = {
+  output: "standalone",
   reactStrictMode: true,
   transpilePackages: ["@repo/ui"],
   assetPrefix: "/home",
