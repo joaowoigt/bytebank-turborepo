@@ -11,7 +11,7 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 RUN yarn global add turbo
 COPY . .
-RUN turbo prune login --docker
+RUN turbo prune dashboard --docker
 
 # Add lockfile and package.json's of isolated subworkspace
 FROM base AS installer
@@ -47,13 +47,13 @@ RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 USER nextjs
 
-COPY --from=installer --chown=nextjs:nodejs /app/apps/login/.next/standalone ./
-COPY --from=installer --chown=nextjs:nodejs /app/apps/login/.next/static ./apps/login/.next/static
-COPY --from=installer --chown=nextjs:nodejs /app/apps/login/public ./apps/login/public
-EXPOSE 3002
+COPY --from=installer --chown=nextjs:nodejs /app/apps/dashboard/.next/standalone ./
+COPY --from=installer --chown=nextjs:nodejs /app/apps/dashboard/.next/static ./apps/dashboard/.next/static
+COPY --from=installer --chown=nextjs:nodejs /app/apps/dashboard/public ./apps/dashboard/public
+EXPOSE 3001
 
-ENV PORT 3002
+ENV PORT 3001
 # set hostname to localhost
 ENV HOSTNAME "0.0.0.0"
 
-CMD node apps/login/server.js
+CMD node apps/dashboard/server.js

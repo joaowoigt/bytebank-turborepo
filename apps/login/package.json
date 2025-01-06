@@ -10,8 +10,8 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@repo/network": "*",
     "@repo/ui": "*",
+    "axios": "^1.7.9",
     "next": "15.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
