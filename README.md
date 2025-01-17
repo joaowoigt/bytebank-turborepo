@@ -1,58 +1,60 @@
-# Turborepo Tailwind CSS starter
+Olá, seja bem vindo ao resultado do meu Tech Challenge ✌️. Meu nome é João Woigt, meu é rm356898, você pode ler mais sobre mim no final deste ReadMe na sessão Sobre o desenvolvedor
 
-This is an official starter Turborepo.
+## Iniciando o projeto
 
-## Using this example
+### Via terminal
 
-Run the following command:
+Apos clonar o projeto, no terminal dentro da pasta rode o comando para instalar as dependencias:
 
-```sh
-npx create-turbo@latest -e with-tailwind
+```bash
+npm install
 ```
 
-## What's inside?
+Em seguida, rode o comando
 
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/)
-- `web`: another [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/)
-- `ui`: a stub React component library with [Tailwind CSS](https://tailwindcss.com/) shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Building packages/ui
-
-This example is set up to produce compiled styles for `ui` components into the `dist` directory. The component `.tsx` files are consumed by the Next.js apps directly using `transpilePackages` in `next.config.js`. This was chosen for several reasons:
-
-- Make sharing one `tailwind.config.js` to apps and packages as easy as possible.
-- Make package compilation simple by only depending on the Next.js Compiler and `tailwindcss`.
-- Ensure Tailwind classes do not overwrite each other. The `ui` package uses a `ui-` prefix for it's classes.
-- Maintain clear package export boundaries.
-
-Another option is to consume `packages/ui` directly from source without building. If using this option, you will need to update the `tailwind.config.js` in your apps to be aware of your package locations, so it can find all usages of the `tailwindcss` class names for CSS compilation.
-
-For example, in [tailwind.config.js](packages/tailwind-config/tailwind.config.js):
-
-```js
-  content: [
-    // app content
-    `src/**/*.{js,ts,jsx,tsx}`,
-    // include packages if not transpiling
-    "../../packages/ui/*.{js,ts,jsx,tsx}",
-  ],
+```bash
+npm run dev
 ```
 
-If you choose this strategy, you can remove the `tailwindcss` and `autoprefixer` dependencies from the `ui` package.
+Possiveis problemas:
+Caso tenha algum problema rodando desta maneira, pode ser que falte a dependencia do turbo repo. Para resolver rode o comando
 
-### Utilities
+```bash
+npm install turbo --global
+```
 
-This Turborepo has some additional tools already setup for you:
+### Via DockerCompose
 
-- [Tailwind CSS](https://tailwindcss.com/) for styles
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+Em um terminal com acesso ao docker, entre na raiz do projeto e rode o comando
+
+```bash
+docker compose up
+```
+
+O projeto deverá estar rodando na porta 3000 se disponivel
+
+## Acessando o projeto publica
+
+Este projeto foi publicado utilizando a Vercel. Passei algumas dificuldades com a AWS, apesar de ter conseguido mandar a imagem do projeto para
+o ECR, ao roda-las no EC2 não reproduzia nada.
+Contudo, o backend esta publicado numa instancia do EC2 na porta http://44.203.160.113:443
+
+Link para acessar a home (agrupador de todos os microfrontends) -> https://bytebank-turborepo-home.vercel.app/ <br>
+Link para acessar apenas o microfrontend de login -> https://bytebank-turborepo-login.vercel.app/<br>
+Link para acessar apenas o microfrontend da dashboard -> https://bytebank-turborepo-dashboard.vercel.app/<br>
+
+## Utilizado no projeto
+
+- NextJs
+- Zones (mircrofrontend do nextJs)
+- TurboRepo
+- Redux
+- Axios
+- Docker
+- Design system
+- TypeScript
+
+## Sobre o desenvolvedor
+
+Olá, meu nome é João Woigt, sou desenvolvedor deste 2020 quando decidi fazer a transição da minha area de estudo (Ciências Socias) para a programação a fim de encontrar melhores oportunidades. Participei de diversos bootcamps, em destaque O Santander Bootcampo | Mobile developer e o curso da Ada Tech Web full-stack. Hoje me especializo em desenvolvimento mobile, com foco em Android e Kotlin multiplataforma. Atuo faz 4 anos na area, tendo passado por projetos como Rock in Rio, Banco Pan e Stone, onde me encontro empregado atualmente.
+Fique a vontade para se conectar em meu [Linkedin](https://www.linkedin.com/in/joaowoigt/)
