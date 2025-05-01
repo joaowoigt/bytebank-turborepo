@@ -4,7 +4,7 @@ import DashboardHeader from "./dashboard/DashboardHeader";
 import DasboardSideMenu from "./dashboard/DashboardSideMenu";
 import DashboardExtractArea from "./dashboard/extractArea/DashboardExtract";
 import NewTransactionArea from "./dashboard/NewTransactionArea/NewTransactionArea";
-import http from "../http";
+import http from "../repositories/http";
 import { useEffect, useState } from "react";
 import { mapTransactionDBToTransactionResponse } from "./domain/mappers/transactionMappers";
 import { Provider, useDispatch } from "react-redux";
@@ -16,10 +16,18 @@ import {
 import DashboardChartArea from "./dashboard/chartArea/DashboardChartArea";
 import { setBalance, setName } from "../features/balance/CenterAreaSlice";
 import { TransactionDB } from "./data/TransactionDB";
+import { DashboardRepositoryImpl } from "../repositories/DashboardRepositoryImpl";
+import { StatementUseCaseImpl } from "./useCases/statement/StatementUseCaseImpl";
+import { AccountUseCaseImpl } from "./useCases/account/AccountUseCaseImpl";
+
+const dashboardRepository = new DashboardRepositoryImpl();
+const statementUseCase = new StatementUseCaseImpl(dashboardRepository);
+const accountUseCase = new AccountUseCaseImpl(dashboardRepository);
 
 export default function Page(): JSX.Element {
   const dispatch = useDispatch();
   function fetchAccount() {
+    const userName = accountUseCase.execute();
     http
       .get("/account")
       .then((response) => {

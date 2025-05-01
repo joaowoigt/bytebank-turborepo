@@ -3,7 +3,7 @@ import { Dropdown, DropDownItem, TransactionType } from "@repo/ui/dropdown";
 import { Text } from "@repo/ui/texts";
 import React, { useState } from "react";
 import CurrencyInput from "react-currency-input-field";
-import http from "../../../http";
+import http from "../../../repositories/http";
 
 export default function NewTransactionArea() {
   const [value, setValue] = useState<number>(0.0);
