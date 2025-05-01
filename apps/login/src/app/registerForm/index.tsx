@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Text } from "@repo/ui/texts";
 import { Button } from "@repo/ui/buttons";
-import http from "./../../http";
+import http from "../../repositories/http";
 
 export default function RegisterForm() {
   const [username, setUsername] = useState("");

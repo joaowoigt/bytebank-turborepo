@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { Text } from "@repo/ui/texts";
 import { Button } from "@repo/ui/buttons";
-import http from "./../../http";
+import { LoginRepositoryImpl } from "../../repositories/login/LoginRepositoryImpl";
+import { LoginUseCaseImpl } from "../../useCases/login/LoginUseCaseImpl";
+
+const loginRepository = new LoginRepositoryImpl();
+const loginService = new LoginUseCaseImpl(loginRepository);
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
@@ -19,26 +23,20 @@ export default function LoginForm() {
     setPassword(event.target.value);
   };
 
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!email || !password) {
       setError({ show: true, message: "Preencha os campos para prosseguir" });
       return;
     }
-    http
-      .post("/user/auth", { email: email, password: password })
-      .then((response) => {
-        setError({
-          show: false,
-          message: "Preencha os campos para prosseguir",
-        });
-        sessionStorage.setItem("token", response.data.result.token);
-        window.location.href = "/dashboard";
-      })
-      .catch((error) => {
-        console.log(error);
-        setError({ show: true, message: "Email ou senha inválidos" });
-      });
+    const token = await loginService.execute(email, password);
+    if (token) {
+      setError({ show: false, message: "" });
+      sessionStorage.setItem("token", token);
+      window.location.href = "/dashboard";
+    } else {
+      setError({ show: true, message: "Email ou senha inválidos" });
+    }
   };
   return (
     <div>
