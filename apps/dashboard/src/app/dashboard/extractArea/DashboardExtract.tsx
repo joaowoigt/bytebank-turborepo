@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import {
   setExtract,
   setFilter,
-} from "../../../features/transactions/transactionsSlices";
+} from "../../features/transactions/transactionsSlices";
 
 export default function DashboardExtractArea(): JSX.Element {
   const dispatch = useDispatch();

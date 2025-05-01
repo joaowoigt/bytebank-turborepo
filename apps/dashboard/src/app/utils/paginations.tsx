@@ -1,4 +1,4 @@
-import { Transaction } from "../domain/models/Transaction";
+import { Transaction } from "../../domain/models/Transaction";
 import { TransactionState } from "../features/transactions/transactionsSlices";
 
 export function setupPagination(state: TransactionState): Transaction[] {

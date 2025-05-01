@@ -1,5 +1,5 @@
 import { createSelector } from "@reduxjs/toolkit";
-import { Transaction } from "../domain/models/Transaction";
+import { Transaction } from "../../domain/models/Transaction";
 
 export const selectCreditValue = createSelector(
   (state) => state.transactions.transactions,

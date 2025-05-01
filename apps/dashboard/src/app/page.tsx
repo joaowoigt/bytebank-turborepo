@@ -6,16 +6,16 @@ import DashboardExtractArea from "./dashboard/extractArea/DashboardExtract";
 import NewTransactionArea from "./dashboard/NewTransactionArea/NewTransactionArea";
 import { useEffect, useState } from "react";
 import { Provider, useDispatch } from "react-redux";
-import store from "../store";
-import {
-  setExtract,
-  setTransactions,
-} from "../features/transactions/transactionsSlices";
 import DashboardChartArea from "./dashboard/chartArea/DashboardChartArea";
-import { setBalance, setName } from "../features/balance/CenterAreaSlice";
 import { DashboardRepositoryImpl } from "../data/repositories/DashboardRepositoryImpl";
 import { StatementUseCaseImpl } from "../domain/useCases/statement/StatementUseCaseImpl";
 import { AccountUseCaseImpl } from "../domain/useCases/account/AccountUseCaseImpl";
+import { setBalance, setName } from "./features/balance/CenterAreaSlice";
+import {
+  setExtract,
+  setTransactions,
+} from "./features/transactions/transactionsSlices";
+import store from "./store";
 
 const dashboardRepository = new DashboardRepositoryImpl();
 const statementUseCase = new StatementUseCaseImpl(dashboardRepository);

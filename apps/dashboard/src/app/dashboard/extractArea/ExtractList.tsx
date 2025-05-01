@@ -1,11 +1,11 @@
-import ExtractItem from "./ExtractItem";
-import { useDispatch, useSelector } from "react-redux";
+import { BackIcon, NextIcon } from "@repo/ui/icons";
+import { Transaction } from "../../../domain/models/Transaction";
 import {
   setCurrentPage,
   setExtract,
-} from "../../../features/transactions/transactionsSlices";
-import { BackIcon, NextIcon } from "@repo/ui/icons";
-import { Transaction } from "../../domain/models/Transaction";
+} from "../../features/transactions/transactionsSlices";
+import ExtractItem from "./ExtractItem";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function ExtractList() {
   const dispatch = useDispatch();
