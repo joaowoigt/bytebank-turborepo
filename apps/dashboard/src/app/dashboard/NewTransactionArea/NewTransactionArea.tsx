@@ -1,9 +1,15 @@
 import { Button } from "@repo/ui/buttons";
-import { Dropdown, DropDownItem, TransactionType } from "@repo/ui/dropdown";
+import { Dropdown, TransactionType } from "@repo/ui/dropdown";
 import { Text } from "@repo/ui/texts";
 import React, { useState } from "react";
 import CurrencyInput from "react-currency-input-field";
-import http from "../../../data/repositories/http";
+import { DashboardRepositoryImpl } from "../../../data/repositories/DashboardRepositoryImpl";
+import { NewTransactionUseCaseImpl } from "../../../domain/useCases/newTransaction/NewTransactionUseCaseImpl";
+
+const dashboardRepository = new DashboardRepositoryImpl();
+const newTransactionUseCase = new NewTransactionUseCaseImpl(
+  dashboardRepository
+);
 
 export default function NewTransactionArea() {
   const [value, setValue] = useState<number>(0.0);
@@ -17,16 +23,17 @@ export default function NewTransactionArea() {
     setValue(text);
   };
 
-  function addTransaction() {
-    const transactionRequest = {
-      value: value,
-      type: type,
-      accountId: sessionStorage.getItem("accountId"),
-    };
-    http.post("/account/transaction", transactionRequest).then((response) => {
-      console.log(response);
+  async function addTransaction() {
+    const newTransactionSuccess = await newTransactionUseCase.execute(
+      value,
+      type,
+      sessionStorage.getItem("accountId") ?? ""
+    );
+    if (newTransactionSuccess) {
       window.location.reload();
-    });
+    } else {
+      alert("Erro ao adicionar transação");
+    }
   }
 
   return (
