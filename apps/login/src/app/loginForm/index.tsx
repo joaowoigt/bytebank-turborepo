@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Text } from "@repo/ui/texts";
 import { Button } from "@repo/ui/buttons";
-import { LoginRepositoryImpl } from "../../repositories/login/LoginRepositoryImpl";
+import { LoginRepositoryImpl } from "../../repositories/LoginRepositoryImpl";
 import { LoginUseCaseImpl } from "../../useCases/login/LoginUseCaseImpl";
 
 const loginRepository = new LoginRepositoryImpl();

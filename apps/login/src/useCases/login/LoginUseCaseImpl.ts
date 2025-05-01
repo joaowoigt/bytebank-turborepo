@@ -1,4 +1,4 @@
-import { LoginRepository } from "../../repositories/login/LoginRepository";
+import { LoginRepository } from "../../repositories/LoginRepository";
 import { LoginUseCase } from "./LoginUseCase";
 
 export class LoginUseCaseImpl implements LoginUseCase {
@@ -12,6 +12,7 @@ export class LoginUseCaseImpl implements LoginUseCase {
       const token = await this.loginRepository.login(email, password);
       return token;
     } catch (error) {
+      console.error(error);
       throw new Error("Email ou senha inválidos");
     }
   }

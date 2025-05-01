@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { Text } from "@repo/ui/texts";
 import { Button } from "@repo/ui/buttons";
-import http from "../../repositories/http";
+import { LoginRepositoryImpl } from "../../repositories/LoginRepositoryImpl";
+import { RegisterUseCaseImpl } from "../../useCases/register/RegisterUseCaseImpl";
+
+const loginRepository = new LoginRepositoryImpl();
+const registerUseCase = new RegisterUseCaseImpl(loginRepository);
 
 export default function RegisterForm() {
   const [username, setUsername] = useState("");
@@ -26,25 +30,23 @@ export default function RegisterForm() {
     setPassword(event.target.value);
   };
 
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!email || !password || !username) {
       setError({ show: true, message: "Preencha os campos para prosseguir" });
       return;
     }
-    http
-      .post("/user", { username: username, email: email, password: password })
-      .then((response) => {
-        setError({
-          show: false,
-          message: "Preencha os campos para prosseguir",
-        });
-        setSuccess(true);
-      })
-      .catch((error) => {
-        console.log(error);
-        setError({ show: true, message: "Email ou senha inválidos" });
-      });
+    const successRegister = await registerUseCase.execute(
+      username,
+      email,
+      password
+    );
+
+    setError({
+      show: !successRegister,
+      message: "Preencha os campos para prosseguir",
+    });
+    setSuccess(successRegister);
   };
   return (
     <div>
