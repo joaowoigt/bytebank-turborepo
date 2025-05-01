@@ -1,6 +1,5 @@
 import http from "./http";
 import { DashboardRepository } from "./DashboardRepository";
-import { Transaction } from "../../domain/models/Transaction";
 import { TransactionDB } from "../TransactionDB";
 import { mapTransactionDBToTransactionResponse } from "../../domain/mappers/transactionMappers";
 import { Statement } from "../../domain/models/Statement";
@@ -31,5 +30,27 @@ export class DashboardRepositoryImpl implements DashboardRepository {
       transactions: trasactionList,
       balance: balance,
     };
+  }
+
+  async addTransaction(
+    value: number,
+    type: string,
+    accountId: string
+  ): Promise<boolean> {
+    try {
+      const transactionRequest = {
+        value: value,
+        type: type,
+        accountId: accountId,
+      };
+      const response = await http.post(
+        "/account/transaction",
+        transactionRequest
+      );
+      return response.status === 201;
+    } catch (error) {
+      console.error("Error adding transaction:", error);
+      throw new Error("Error adding transaction:");
+    }
   }
 }
