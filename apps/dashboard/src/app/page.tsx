@@ -4,9 +4,7 @@ import DashboardHeader from "./dashboard/DashboardHeader";
 import DasboardSideMenu from "./dashboard/DashboardSideMenu";
 import DashboardExtractArea from "./dashboard/extractArea/DashboardExtract";
 import NewTransactionArea from "./dashboard/NewTransactionArea/NewTransactionArea";
-import http from "../repositories/http";
 import { useEffect, useState } from "react";
-import { mapTransactionDBToTransactionResponse } from "./domain/mappers/transactionMappers";
 import { Provider, useDispatch } from "react-redux";
 import store from "../store";
 import {
@@ -15,10 +13,9 @@ import {
 } from "../features/transactions/transactionsSlices";
 import DashboardChartArea from "./dashboard/chartArea/DashboardChartArea";
 import { setBalance, setName } from "../features/balance/CenterAreaSlice";
-import { TransactionDB } from "./data/TransactionDB";
-import { DashboardRepositoryImpl } from "../repositories/DashboardRepositoryImpl";
-import { StatementUseCaseImpl } from "./useCases/statement/StatementUseCaseImpl";
-import { AccountUseCaseImpl } from "./useCases/account/AccountUseCaseImpl";
+import { DashboardRepositoryImpl } from "../data/repositories/DashboardRepositoryImpl";
+import { StatementUseCaseImpl } from "../domain/useCases/statement/StatementUseCaseImpl";
+import { AccountUseCaseImpl } from "../domain/useCases/account/AccountUseCaseImpl";
 
 const dashboardRepository = new DashboardRepositoryImpl();
 const statementUseCase = new StatementUseCaseImpl(dashboardRepository);
@@ -26,33 +23,15 @@ const accountUseCase = new AccountUseCaseImpl(dashboardRepository);
 
 export default function Page(): JSX.Element {
   const dispatch = useDispatch();
-  function fetchAccount() {
-    const userName = accountUseCase.execute();
-    http
-      .get("/account")
-      .then((response) => {
-        sessionStorage.setItem("accountId", response.data.result.account[0].id);
-        dispatch(setName(response.data.result.cards[0].name));
-      })
-      .then(() => {
-        const accountid = sessionStorage.getItem("accountId");
-        http.get(`account/${accountid}/statement`).then((response) => {
-          const mappedList = response.data.result.transactions.map(
-            (item: TransactionDB) => {
-              return mapTransactionDBToTransactionResponse(item);
-            }
-          );
-          const balance = response.data.result.transactions.reduce(
-            (acc: number, item: TransactionDB) => {
-              return acc + item.value;
-            },
-            0
-          );
-          dispatch(setBalance(balance));
-          dispatch(setTransactions(mappedList));
-          dispatch(setExtract());
-        });
-      });
+
+  async function fetchAccount() {
+    const account = await accountUseCase.execute();
+    sessionStorage.setItem("accountId", account.id);
+    dispatch(setName(account.name));
+    const statement = await statementUseCase.execute(account.id);
+    dispatch(setBalance(statement.balance));
+    dispatch(setTransactions(statement.transactions));
+    dispatch(setExtract());
   }
 
   useEffect(() => {

@@ -1,7 +1,7 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { setupPagination } from "../../utils/paginations";
 import { handleFilter } from "../../utils/filter";
-import { Transaction } from "../../app/domain/models/Transaction";
+import { Transaction } from "../../domain/models/Transaction";
 
 export interface TransactionState {
   transactions: Transaction[];
