@@ -1,4 +1,4 @@
-import { LoginRepository } from "../../repositories/LoginRepository";
+import { LoginRepository } from "../../../data/repositories/LoginRepository";
 
 export class RegisterUseCaseImpl {
   constructor(private readonly loginRepository: LoginRepository) {}

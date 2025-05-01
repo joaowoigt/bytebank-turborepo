@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Text } from "@repo/ui/texts";
 import { Button } from "@repo/ui/buttons";
-import { LoginRepositoryImpl } from "../../repositories/LoginRepositoryImpl";
-import { RegisterUseCaseImpl } from "../../useCases/register/RegisterUseCaseImpl";
+import { LoginRepositoryImpl } from "../../data/repositories/LoginRepositoryImpl";
+import { RegisterUseCaseImpl } from "../../domain/useCases/register/RegisterUseCaseImpl";
 
 const loginRepository = new LoginRepositoryImpl();
 const registerUseCase = new RegisterUseCaseImpl(loginRepository);

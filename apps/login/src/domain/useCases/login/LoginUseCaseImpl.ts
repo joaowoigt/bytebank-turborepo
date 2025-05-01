@@ -1,4 +1,4 @@
-import { LoginRepository } from "../../repositories/LoginRepository";
+import { LoginRepository } from "../../../data/repositories/LoginRepository";
 import { LoginUseCase } from "./LoginUseCase";
 
 export class LoginUseCaseImpl implements LoginUseCase {
