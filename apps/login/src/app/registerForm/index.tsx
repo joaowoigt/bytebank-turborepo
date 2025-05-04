@@ -1,8 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Text } from "@repo/ui/texts";
 import { Button } from "@repo/ui/buttons";
 import { LoginRepositoryImpl } from "../../data/repositories/LoginRepositoryImpl";
 import { RegisterUseCaseImpl } from "../../domain/useCases/register/RegisterUseCaseImpl";
+import {
+  debounce,
+  debounceTime,
+  distinct,
+  distinctUntilChanged,
+  from,
+  fromEvent,
+  map,
+} from "rxjs";
+import UserNameObaserver from "../observers/UsernameObserver";
+import { validateUserName } from "../observers/Validator";
+import { UiError } from "../../domain/useCases/models/Error";
 
 const loginRepository = new LoginRepositoryImpl();
 const registerUseCase = new RegisterUseCaseImpl(loginRepository);
@@ -15,6 +27,19 @@ export default function RegisterForm() {
     show: false,
     message: "Email ou senha invalidos",
   });
+
+  const [inputError, setInputError] = useState<UiError>({
+    show: false,
+    message: "O nome de usuário deve ter pelo menos 3 caracteres",
+  });
+
+  useEffect(() => {
+    const userNameObserver = new UserNameObaserver(
+      setInputError,
+      "userNameInput",
+      validateUserName
+    );
+  }, []);
 
   const [success, setSuccess] = useState(false);
 
@@ -65,12 +90,21 @@ export default function RegisterForm() {
             text={error.message}
           ></Text>
         )}
+        {inputError.show && (
+          <Text
+            intent="RegultarBorded"
+            color="negative"
+            style="bold"
+            text={inputError.message}
+          ></Text>
+        )}
         <form>
           <Text intent="Regular" color="black" style="bold" text="Nome"></Text>
           <input
             className="outline outline-1 outline-primary  mb-big mt-medium bg-white rounded-md px-small w-[250px]  py-small text-black text-start flex flex-row hover:cursor-text"
             type="text"
             name="username"
+            id="userNameInput"
             onChange={handleUsernameChange}
             color="black"
           ></input>

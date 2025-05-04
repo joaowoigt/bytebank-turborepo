@@ -6,6 +6,8 @@ const textStyles = cva("ui-font-sans", {
       ExtraHeading: "ui-text-[32px]",
       Heading: "ui-text-big ",
       Regular: "ui-text-medium",
+      RegultarBorded:
+        "ui-text-medium ui-drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]",
       Small: "ui-text-small",
       ExtraSmall: "ui-text-extra_small",
     },
