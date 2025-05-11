@@ -1,7 +1,7 @@
 import { debounceTime, distinctUntilChanged, fromEvent, map } from "rxjs";
 import { UiError } from "../../domain/useCases/models/Error";
 
-export default class UserNameObaserver {
+export default class RegisterObserver {
   private inputError: UiError = {
     show: false,
     message: "O nome de usuário deve ter pelo menos 3 caracteres",

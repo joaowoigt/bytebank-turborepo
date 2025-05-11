@@ -4,17 +4,12 @@ import { Button } from "@repo/ui/buttons";
 import { LoginRepositoryImpl } from "../../data/repositories/LoginRepositoryImpl";
 import { RegisterUseCaseImpl } from "../../domain/useCases/register/RegisterUseCaseImpl";
 import {
-  debounce,
-  debounceTime,
-  distinct,
-  distinctUntilChanged,
-  from,
-  fromEvent,
-  map,
-} from "rxjs";
-import UserNameObaserver from "../observers/UsernameObserver";
-import { validateUserName } from "../observers/Validator";
+  validateEmail,
+  validatePassword,
+  validateUserName,
+} from "../observers/Validator";
 import { UiError } from "../../domain/useCases/models/Error";
+import RegisterObserver from "../observers/UsernameObserver";
 
 const loginRepository = new LoginRepositoryImpl();
 const registerUseCase = new RegisterUseCaseImpl(loginRepository);
@@ -34,10 +29,20 @@ export default function RegisterForm() {
   });
 
   useEffect(() => {
-    const userNameObserver = new UserNameObaserver(
+    const userNameObserver = new RegisterObserver(
       setInputError,
       "userNameInput",
       validateUserName
+    );
+    const emailObserver = new RegisterObserver(
+      setInputError,
+      "emailInput",
+      validateEmail
+    );
+    const passwordInput = new RegisterObserver(
+      setInputError,
+      "passwordInput",
+      validatePassword
     );
   }, []);
 
@@ -113,6 +118,7 @@ export default function RegisterForm() {
             className="outline outline-1 outline-primary  mb-big mt-medium bg-white rounded-md px-small w-[250px]  py-small text-black text-start flex flex-row hover:cursor-text"
             type="text"
             name="emailname"
+            id="emailInput"
             onChange={handleEmailChange}
             color="black"
           ></input>
@@ -121,6 +127,7 @@ export default function RegisterForm() {
             className="outline outline-1 outline-primary  mb-big mt-medium bg-white rounded-md px-small w-[250px]  py-small text-black text-start flex flex-row hover:cursor-text"
             type="password"
             name="password"
+            id="passwordInput"
             onChange={handlePasswordChange}
             color="black"
           ></input>
