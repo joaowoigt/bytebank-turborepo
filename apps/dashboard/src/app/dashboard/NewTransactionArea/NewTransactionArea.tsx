@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import CurrencyInput from "react-currency-input-field";
 import { DashboardRepositoryImpl } from "../../../data/repositories/DashboardRepositoryImpl";
 import { NewTransactionUseCaseImpl } from "../../../domain/useCases/newTransaction/NewTransactionUseCaseImpl";
+import { decrypt } from "../../../data/repositories/security/EncryptUtils";
 
 const dashboardRepository = new DashboardRepositoryImpl();
 const newTransactionUseCase = new NewTransactionUseCaseImpl(
@@ -27,7 +28,7 @@ export default function NewTransactionArea() {
     const newTransactionSuccess = await newTransactionUseCase.execute(
       value,
       type,
-      sessionStorage.getItem("accountId") ?? ""
+      decrypt(sessionStorage.getItem("accountId") ?? "")
     );
     if (newTransactionSuccess) {
       window.location.reload();

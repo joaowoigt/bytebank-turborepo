@@ -16,6 +16,7 @@ import {
   setTransactions,
 } from "./features/transactions/transactionsSlices";
 import store from "./store";
+import { encrypt } from "../data/repositories/security/EncryptUtils";
 
 const dashboardRepository = new DashboardRepositoryImpl();
 const statementUseCase = new StatementUseCaseImpl(dashboardRepository);
@@ -26,7 +27,7 @@ export default function Page(): JSX.Element {
 
   async function fetchAccount() {
     const account = await accountUseCase.execute();
-    sessionStorage.setItem("accountId", account.id);
+    sessionStorage.setItem("accountId", encrypt(account.id).encryptedData);
     dispatch(setName(account.name));
     const statement = await statementUseCase.execute(account.id);
     dispatch(setBalance(statement.balance));
