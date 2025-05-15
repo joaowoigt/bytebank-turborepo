@@ -1,10 +1,12 @@
 import http from "./http";
 import { LoginRepository } from "./LoginRepository";
+import { encrypt } from "./security/EncryptUtils";
 
 export class LoginRepositoryImpl implements LoginRepository {
   async login(email: string, password: string): Promise<string> {
     const response = await http.post("/user/auth", { email, password });
-    return response.data.result.token;
+    let encryptToken = encrypt(response.data.result.token);
+    return encryptToken.encryptedData;
   }
 
   async register(

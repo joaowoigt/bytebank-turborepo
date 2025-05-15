@@ -1,4 +1,5 @@
 import axios from "axios";
+import { decrypt } from "../security/EncryptUtils";
 
 const http = axios.create({
   baseURL: "http://localhost:3000/",
@@ -7,9 +8,10 @@ const http = axios.create({
 http.interceptors.request.use(
   function (config) {
     const token = sessionStorage.getItem("token");
+    const decryptedToken = decrypt(token);
 
     if (token) {
-      config.headers["Authorization"] = `Bearer ${token}`;
+      config.headers["Authorization"] = `Bearer ${decryptedToken}`;
     }
 
     return config;
