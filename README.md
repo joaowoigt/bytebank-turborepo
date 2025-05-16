@@ -52,6 +52,11 @@ https://github.com/israelmeinert/tech-challenge-2
 - Docker
 - Design system
 - TypeScript
+🆕
+- Clean archtecture
+- Mais principios de Solid
+- Programação reativa com RXjs
+- Encripitação de dados
 
 ## Sobre o desenvolvedor
 
