@@ -9,7 +9,7 @@ import {
   validateUserName,
 } from "../observers/Validator";
 import { UiError } from "../../domain/useCases/models/Error";
-import RegisterObserver from "../observers/UsernameObserver";
+import RegisterObserver from "../observers/RegisterObserver";
 
 const loginRepository = new LoginRepositoryImpl();
 const registerUseCase = new RegisterUseCaseImpl(loginRepository);

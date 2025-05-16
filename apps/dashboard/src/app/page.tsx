@@ -16,7 +16,7 @@ import {
   setTransactions,
 } from "./features/transactions/transactionsSlices";
 import store from "./store";
-import { encrypt } from "../data/repositories/security/EncryptUtils";
+import { encrypt } from "../data/security/EncryptUtils";
 
 const dashboardRepository = new DashboardRepositoryImpl();
 const statementUseCase = new StatementUseCaseImpl(dashboardRepository);

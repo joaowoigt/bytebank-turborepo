@@ -1,4 +1,4 @@
-import http from "./http";
+import http from "../http";
 import { DashboardRepository } from "./DashboardRepository";
 import { TransactionDB } from "../TransactionDB";
 import { mapTransactionDBToTransactionResponse } from "../../domain/mappers/transactionMappers";

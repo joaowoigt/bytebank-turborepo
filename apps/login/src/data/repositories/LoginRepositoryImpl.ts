@@ -1,6 +1,6 @@
-import http from "./http";
+import http from "../http";
 import { LoginRepository } from "./LoginRepository";
-import { encrypt } from "./security/EncryptUtils";
+import { encrypt } from "../security/EncryptUtils";
 
 export class LoginRepositoryImpl implements LoginRepository {
   async login(email: string, password: string): Promise<string> {
