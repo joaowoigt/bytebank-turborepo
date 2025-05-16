@@ -33,15 +33,14 @@ docker compose up
 
 O projeto deverá estar rodando na porta 3000 se disponivel
 
-## Acessando o projeto publica
+## Sobre o back end
 
-Este projeto foi publicado utilizando a Vercel. Passei algumas dificuldades com a AWS, apesar de ter conseguido mandar a imagem do projeto para
-o ECR, ao roda-las no EC2 não reproduzia nada.
-Contudo, o backend esta publicado numa instancia do EC2 na porta http://44.203.160.113:443
+Para este projeto utilizei localmente o back end fornecido no modulo de Microfrontend, uma vez que, o objetivo é apenas refatoração de front
+e aplicação de praticas de segurança
 
-Link para acessar a home (agrupador de todos os microfrontends) -> https://bytebank-turborepo-home.vercel.app/ <br>
-Link para acessar apenas o microfrontend de login -> https://bytebank-turborepo-login.vercel.app/<br>
-Link para acessar apenas o microfrontend da dashboard -> https://bytebank-turborepo-dashboard.vercel.app/<br>
+Para conseguir ter acesso completo, você também precisará do projeto de back end do professor Israel em sua maquina e rodando na porta 3001
+Link do repo
+https://github.com/israelmeinert/tech-challenge-2
 
 ## Utilizado no projeto
 
