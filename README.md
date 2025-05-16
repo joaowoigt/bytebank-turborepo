@@ -31,14 +31,14 @@ Em um terminal com acesso ao docker, entre na raiz do projeto e rode o comando
 docker compose up
 ```
 
-O projeto deverá estar rodando na porta 3000 se disponivel
+O projeto deverá estar rodando na porta 3001 se disponivel
 
 ## Sobre o back end
 
 Para este projeto utilizei localmente o back end fornecido no modulo de Microfrontend, uma vez que, o objetivo é apenas refatoração de front
 e aplicação de praticas de segurança
 
-Para conseguir ter acesso completo, você também precisará do projeto de back end do professor Israel em sua maquina e rodando na porta 3001
+Para conseguir ter acesso completo, você também precisará do projeto de back end do professor Israel em sua maquina e rodando na porta 3000
 Link do repo
 https://github.com/israelmeinert/tech-challenge-2
 
